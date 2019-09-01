@@ -3,11 +3,38 @@ library swift_ids;
 final String _encodeChars = "0123456789QVXYABCDEFGHJKMNPRSTWZU";
 
 final Map<String, int> _decodeMap = const {
-  '0': 0,  '1': 1,  '2': 2,  '3': 3,  '4': 4,  '5': 5,  '6': 6, '7': 7,
-  '8': 8,  '9': 9,  'Q': 10, 'V': 11, 'X': 12, 'Y': 13,
-  'A': 14,  'B': 15,  'C': 16,  'D': 17,  'E': 18,  'F': 19,
-  'G': 20,  'H': 21,  'J': 22,  'K': 23,  'M': 24,  'N': 25,
-  'P': 26,  'R': 27,  'S': 28,  'T': 29,  'W': 30,  'Z': 31,
+  '0': 0,
+  '1': 1,
+  '2': 2,
+  '3': 3,
+  '4': 4,
+  '5': 5,
+  '6': 6,
+  '7': 7,
+  '8': 8,
+  '9': 9,
+  'Q': 10,
+  'V': 11,
+  'X': 12,
+  'Y': 13,
+  'A': 14,
+  'B': 15,
+  'C': 16,
+  'D': 17,
+  'E': 18,
+  'F': 19,
+  'G': 20,
+  'H': 21,
+  'J': 22,
+  'K': 23,
+  'M': 24,
+  'N': 25,
+  'P': 26,
+  'R': 27,
+  'S': 28,
+  'T': 29,
+  'W': 30,
+  'Z': 31,
   'U': 32
 };
 
@@ -36,7 +63,7 @@ class Id {
     int prevDecoded = 0;
     int offset = 0;
     int mangler = 0x5;
-    string.split('').forEach((String char){
+    string.split('').forEach((String char) {
       if (!_decodeMap.containsKey(char)) {
         throw new Exception('unknow character: ' + char);
       }
@@ -44,7 +71,7 @@ class Id {
       if (decoded == 32) {
         decoded = prevDecoded;
       }
-      if (chars ++ == 2) {
+      if (chars++ == 2) {
         if (decoded & 16 > 0) {
           throw new Exception('checksum error');
         }
@@ -66,7 +93,6 @@ class Id {
   }
 
   String _encode(int value) {
-
     value = value ^ zero;
 
     String ret = "";
@@ -75,8 +101,7 @@ class Id {
     int charCode;
     int chars = 0;
     while (value > 0 || ret.length < minLength) {
-
-      if (chars ++ == 2) {
+      if (chars++ == 2) {
         charCode = (value & 7) ^ mangler;
         value >>= 3;
         if (charCode < 6) {
@@ -99,10 +124,10 @@ class Id {
   }
 
   int toInt() {
-     return value;
+    return value;
   }
 
   String toString() {
-     return _encode(value);
+    return _encode(value);
   }
 }
