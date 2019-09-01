@@ -1,8 +1,6 @@
 # swift_ids
 
-## abstract
-
-Convert int to human friendly id string and back.
+Convert number IDs to human friendly string and back.
 
 | integer | swift_id |
 |---|--------|
@@ -20,9 +18,9 @@ The generated ID is:
 * user can't tell how many entities there are
 * shorter than original int (5 characters can save 8388608 ids)
 * easy to write down / spell over the phone because generated string uses:
-.* only uppercase letters,
-.* no confusing digits: O=0 and I=L=1
-.* no two consecutive characters are the same
+  * only uppercase letters,
+  * no confusing digits: O=0 and I=L=1
+  * no two consecutive characters are the same
 * avoid accidental profanities (and words in general)
 * minimum length is configurable
 
