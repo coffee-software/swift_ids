@@ -1,5 +1,5 @@
 name: swift_ids
-description: Convert int to human friendly id string and back.
+description: Convert numeric IDs to human friendly hash string that is shorter and easier to write and memorize.
 version: 1.0.0
 author: Franciszek Szczepan Wawrzak <frank@wawrzak.com>
 homepage: http://dev.swift.shop/
