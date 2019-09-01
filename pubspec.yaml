@@ -1,0 +1,10 @@
+name: swift_ids
+description: Convert int to human friendly id string and back.
+version: 1.0.0
+author: Franciszek Szczepan Wawrzak <frank@wawrzak.com>
+homepage: http://dev.swift.shop/
+environment:
+  sdk: '>=2.0.0 <3.0.0'
+dev_dependencies:
+  test: any
+  hashids2: any
