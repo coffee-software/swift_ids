@@ -38,23 +38,55 @@ final Map<String, int> _decodeMap = const {
   'U': 32
 };
 
+final Map<String, String> _typosMap = const {
+  'O': '0',
+  'I': '1',
+  'L': '1'
+};
+
+/**
+ * Exception thrown when there is a typo possible in user input.
+ * When ID is used in URL, allows to redirect to propel URL.
+ */
+class PossibleTypoException implements Exception {
+  String candidate;
+  PossibleTypoException(this.candidate);
+}
+
+/**
+ * Human friendly hash string
+ */
 class Id {
+
   int value;
   int minLength;
   int zero;
 
+  /**
+   * create from integer value. Use to encode int
+   */
   Id(this.value, {this.minLength = 4, this.zero = 0x11111});
 
+  /**
+   * create from string value. Use to decode hash.
+   */
   Id.fromString(String string, {this.minLength = 4, this.zero = 0x11111}) {
     value = _decode(string);
   }
 
-  static String sanitizeHumanString(String string) {
-    string = string.toUpperCase();
-    string.replaceAll('O', '0');
-    string.replaceAll('I', '1');
-    string.replaceAll('L', '1');
-    return string;
+  void _checkForPossibleTypo(String string) {
+    String candidate = '';
+    string.split('').forEach((String char) {
+      if (_decodeMap.containsKey(char)) {
+        candidate += char;
+      } else if (_typosMap.containsKey(char)) {
+        candidate += _typosMap[char];
+      } else {
+        return;
+      }
+    });
+    //if (_decode(string)) 
+    throw new PossibleTypoException(candidate);
   }
 
   int _decode(String string) {
@@ -65,6 +97,7 @@ class Id {
     int mangler = 0x5;
     string.split('').forEach((String char) {
       if (!_decodeMap.containsKey(char)) {
+        _checkForPossibleTypo(string);
         throw new Exception('unknow character: ' + char);
       }
       int decoded = _decodeMap[char];
@@ -123,10 +156,9 @@ class Id {
     return ret;
   }
 
-  int toInt() {
-    return value;
-  }
-
+  /**
+   * return hash representation
+   */
   String toString() {
     return _encode(value);
   }

@@ -48,4 +48,8 @@ void main() {
       }
       //print(new DateTime.now().millisecondsSinceEpoch - start2);
     });
+
+    test('typos', () {
+      expect(() => new Id.fromString('AOL'), throwsA(TypeMatcher<PossibleTypoException>()));
+    });
 }
