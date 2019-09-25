@@ -44,32 +44,24 @@ final Map<String, String> _typosMap = const {
   'L': '1'
 };
 
-/**
- * Exception thrown when there is a typo possible in user input.
- * When ID is used in URL, allows to redirect to propel URL.
- */
+/// Exception thrown when there is a typo possible in user input.
+/// When ID is used in URL, allows to redirect to propel URL.
 class PossibleTypoException implements Exception {
   String candidate;
   PossibleTypoException(this.candidate);
 }
 
-/**
- * Human friendly hash string
- */
+/// Human friendly hash string
 class Id {
 
   int value;
-  int minLength;
-  int zero;
+  final int minLength;
+  final int zero;
 
-  /**
-   * create from integer value. Use to encode int
-   */
+  /// create from integer value. Use to encode int
   Id(this.value, {this.minLength = 4, this.zero = 0x11111});
 
-  /**
-   * create from string value. Use to decode hash.
-   */
+  /// create from string value. Use to decode hash.
   Id.fromString(String string, {this.minLength = 4, this.zero = 0x11111}) {
     value = _decode(string);
   }
@@ -85,7 +77,7 @@ class Id {
         return;
       }
     });
-    //if (_decode(string)) 
+    //if (_decode(string))
     throw new PossibleTypoException(candidate);
   }
 
@@ -156,9 +148,7 @@ class Id {
     return ret;
   }
 
-  /**
-   * return hash representation
-   */
+  ///return hash representation
   String toString() {
     return _encode(value);
   }
