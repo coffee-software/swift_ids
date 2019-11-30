@@ -78,7 +78,7 @@ class Id {
       }
     });
     //if (_decode(string))
-    throw new PossibleTypoException(candidate);
+    throw PossibleTypoException(candidate);
   }
 
   int _decode(String string) {
@@ -90,7 +90,7 @@ class Id {
     string.split('').forEach((String char) {
       if (!_decodeMap.containsKey(char)) {
         _checkForPossibleTypo(string);
-        throw new Exception('unknow character: ' + char);
+        throw Exception('unknow character: ' + char);
       }
       int decoded = _decodeMap[char];
       if (decoded == 32) {
@@ -98,10 +98,10 @@ class Id {
       }
       if (chars++ == 2) {
         if (decoded & 16 > 0) {
-          throw new Exception('checksum error');
+          throw Exception('checksum error');
         }
         if ((decoded & 0x7 < 6) && (decoded >> 3) != (prevDecoded & 1)) {
-          throw new Exception('checksum error');
+          throw Exception('checksum error');
         }
         value = value + (((decoded & 0x7) ^ mangler) << offset);
         mangler = decoded & 0x7;
