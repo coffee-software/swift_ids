@@ -1,6 +1,6 @@
 name: swift_ids
 description: Convert numeric IDs to human friendly hash string that is shorter and easier to write and memorize.
-version: 1.1.1
+version: 1.1.2
 author: Franciszek Szczepan Wawrzak <frank@wawrzak.com>
 homepage: https://github.com/fsw/swift_ids
 environment:
