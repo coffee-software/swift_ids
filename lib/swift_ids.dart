@@ -1,6 +1,6 @@
 library swift_ids;
 
-final String _encodeChars = "0123456789QVXYABCDEFGHJKMNPRSTWZU";
+final String _encodeChars = '0123456789QVXYABCDEFGHJKMNPRSTWZU';
 
 final Map<String, int> _decodeMap = const {
   '0': 0,
@@ -67,7 +67,7 @@ class Id {
   }
 
   void _checkForPossibleTypo(String string) {
-    String candidate = '';
+    var candidate = '';
     string.split('').forEach((String char) {
       if (_decodeMap.containsKey(char)) {
         candidate += char;
@@ -82,11 +82,11 @@ class Id {
   }
 
   int _decode(String string) {
-    int value = 0;
-    int chars = 0;
-    int prevDecoded = 0;
-    int offset = 0;
-    int mangler = 0x5;
+    var value = 0;
+    var chars = 0;
+    var prevDecoded = 0;
+    var offset = 0;
+    var mangler = 0x5;
     string.split('').forEach((String char) {
       if (!_decodeMap.containsKey(char)) {
         _checkForPossibleTypo(string);
@@ -120,11 +120,11 @@ class Id {
   String _encode(int value) {
     value = value ^ zero;
 
-    String ret = "";
-    int mangler = 0x5;
-    int prevCharCode = 0;
-    int charCode;
-    int chars = 0;
+    var ret = '';
+    var mangler = 0x5;
+    var prevCharCode = 0;
+    var charCode = 0;
+    var chars = 0;
     while (value > 0 || ret.length < minLength) {
       if (chars++ == 2) {
         charCode = (value & 7) ^ mangler;
