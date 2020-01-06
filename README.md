@@ -1,6 +1,6 @@
 # swift_ids
 
-Convert number IDs to human friendly string and back.
+Convert numeric IDs to human and web friendly string and back.
 
 | integer | swift_id |
 |---|--------|
@@ -11,18 +11,17 @@ Convert number IDs to human friendly string and back.
 | 1000 | SF7B |
 | 10000000 | GM1Y3Q |
 
-The generated ID is:
+## features of generated id
 
-* fast to convert back and forth (algorithm uses mostly binary operations)
-* seems random (end user can't browse trough entities easily)
-* user can't tell how many entities there are
-* shorter than original int (5 characters can save 8388608 ids)
 * easy to write down / spell over the phone because generated string uses:
   * only uppercase letters,
   * no confusing digits: O=0 and I=L=1
   * no two consecutive characters are the same
-* avoid accidental profanities (and words in general)
-* minimum length is configurable
+* fast to convert back and forth (algorithm uses mostly binary operations)
+* seems random (user can't browse trough entities easily or tell how many entities there are)
+* generated id is shorter than original int as decimal (5 characters can save 8388608 ids)
+* free from accidental profanities (and words in general)
+* minimum length and initial zero code is configurable
 
 ## usage
 ```dart

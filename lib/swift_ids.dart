@@ -92,7 +92,7 @@ class Id {
         _checkForPossibleTypo(string);
         throw Exception('unknow character: ' + char);
       }
-      int decoded = _decodeMap[char];
+      var decoded = _decodeMap[char];
       if (decoded == 32) {
         decoded = prevDecoded;
       }
@@ -149,7 +149,7 @@ class Id {
   }
 
   ///return hash representation
-  String toString() {
+  @override String toString() {
     return _encode(value);
   }
 }
