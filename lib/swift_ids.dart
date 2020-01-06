@@ -38,11 +38,7 @@ final Map<String, int> _decodeMap = const {
   'U': 32
 };
 
-final Map<String, String> _typosMap = const {
-  'O': '0',
-  'I': '1',
-  'L': '1'
-};
+final Map<String, String> _typosMap = const {'O': '0', 'I': '1', 'L': '1'};
 
 /// Exception thrown when there is a typo possible in user input.
 /// When ID is used in URL, allows to redirect to propel URL.
@@ -53,7 +49,6 @@ class PossibleTypoException implements Exception {
 
 /// Human friendly hash string
 class Id {
-
   int value;
   final int minLength;
   final int zero;
