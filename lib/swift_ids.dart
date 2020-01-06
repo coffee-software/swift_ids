@@ -149,7 +149,8 @@ class Id {
   }
 
   ///return hash representation
-  @override String toString() {
+  @override
+  String toString() {
     return _encode(value);
   }
 }
