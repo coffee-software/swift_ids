@@ -57,7 +57,9 @@ class Id {
   Id(this.value, {this.minLength = 4, this.zero = 0x11111});
 
   /// create from string value. Use to decode hash.
-  Id.fromString(String string, {this.minLength = 4, this.zero = 0x11111}) {
+  Id.fromString(String string, {this.minLength = 4, this.zero = 0x11111}) :
+    value = 0
+  {
     value = _decode(string);
   }
 
@@ -67,7 +69,7 @@ class Id {
       if (_decodeMap.containsKey(char)) {
         candidate += char;
       } else if (_typosMap.containsKey(char)) {
-        candidate += _typosMap[char];
+        candidate += _typosMap[char]!;
       } else {
         return;
       }
@@ -87,7 +89,7 @@ class Id {
         _checkForPossibleTypo(string);
         throw Exception('unknow character: ' + char);
       }
-      var decoded = _decodeMap[char];
+      var decoded = _decodeMap[char]!;
       if (decoded == 32) {
         decoded = prevDecoded;
       }
@@ -107,7 +109,7 @@ class Id {
         mangler = decoded & 0x7;
         offset += 5;
       }
-      prevDecoded = _decodeMap[char];
+      prevDecoded = _decodeMap[char]!;
     });
     return value ^ zero;
   }
