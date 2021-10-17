@@ -35,6 +35,12 @@ print("${encode2.value} == ${encode2.toString()}"); //5 == HBQ8H7E85B
 //same zero/minLength need to be used when decoding
 var decode2 = new Id.fromString('HBQ8H7E85B', minLength:10, zero:0x55555555555);
 print("${decode2.value} == ${decode2.toString()}"); //4 == C84X
+
+//you can also create single converter instance to encode ints and decode Strings:
+var converter = new IdConverter(minLength: 9, zero: 0x1234512345);
+converter.decode('5S4YD9X01'); //101
+converter.encode(101); //'5S4YD9X01'
+
 ```
 
 `zero` is an initial value that is XORed with input that can be used to:

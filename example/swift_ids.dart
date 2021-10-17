@@ -1,4 +1,5 @@
 #!/usr/bin/env dart
+
 import 'package:swift_ids/swift_ids.dart';
 
 void main(List<String> arguments) {
@@ -13,4 +14,8 @@ void main(List<String> arguments) {
   var decode2 =
       new Id.fromString('HBQ8H7E85B', minLength: 10, zero: 0x55555555555);
   print("${decode2.value} == ${decode2.toString()}"); //4 == C84X
+
+  var converter = new IdConverter(minLength: 9, zero: 0x1234512345);
+  print(converter.decode('5S4YD9X01')); //101
+  print(converter.encode(101)); //'5S4YD9X01'
 }

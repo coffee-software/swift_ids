@@ -61,4 +61,21 @@ void main() {
     expect(() => new Id.fromString('AOL'),
         throwsA(TypeMatcher<PossibleTypoException>()));
   });
+
+  test('converter', () {
+    var converter = new IdConverter(minLength: 9, zero: 0x1234512345);
+    var expectedValues = {
+      0: 'UP2VK7Q67',
+      1: '1RVQJ6V76',
+      2: '2M09HY845',
+      100: '4TYXC0Y18',
+      101: '5S4YD9X01',
+      102: '6Z7AE2B3Q',
+    };
+    expectedValues.forEach((value, expected) {
+      expect(converter.encode(value), equals(expected));
+      expect(converter.encode(value),
+          equals(new Id(value, minLength: 9, zero: 0x1234512345).toString()));
+    });
+  });
 }

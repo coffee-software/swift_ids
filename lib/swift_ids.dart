@@ -47,6 +47,22 @@ class PossibleTypoException implements Exception {
   PossibleTypoException(this.candidate);
 }
 
+/// Convenient int to String converter with common settings
+class IdConverter {
+  final int minLength;
+  final int zero;
+  IdConverter({this.minLength = 4, this.zero = 0x11111});
+
+  String encode(int value) {
+    return new Id(value, minLength: this.minLength, zero: this.zero).toString();
+  }
+
+  int decode(String value) {
+    return Id.fromString(value, minLength: this.minLength, zero: this.zero)
+        .value;
+  }
+}
+
 /// Human friendly hash string
 class Id {
   int value;
@@ -57,9 +73,8 @@ class Id {
   Id(this.value, {this.minLength = 4, this.zero = 0x11111});
 
   /// create from string value. Use to decode hash.
-  Id.fromString(String string, {this.minLength = 4, this.zero = 0x11111}) :
-    value = 0
-  {
+  Id.fromString(String string, {this.minLength = 4, this.zero = 0x11111})
+      : value = 0 {
     value = _decode(string);
   }
 

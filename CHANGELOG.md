@@ -1,3 +1,7 @@
+# 2.1.0
+
+add IdConverter class
+
 # 2.0.0
 
 null safety migration
