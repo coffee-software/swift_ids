@@ -1,6 +1,6 @@
 name: swift_ids
 description: Convert numeric IDs to human friendly hash string that is shorter and easier to write and memorize.
-version: 2.1.0
+version: 2.1.1
 homepage: https://github.com/coffee-software/swift_ids
 environment:
   sdk: ">=2.12.0 <4.0.0"

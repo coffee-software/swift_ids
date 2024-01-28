@@ -1,3 +1,7 @@
+# 2.1.1
+
+allow dart 3 sdk, update github repo url
+
 # 2.1.0
 
 add IdConverter class
