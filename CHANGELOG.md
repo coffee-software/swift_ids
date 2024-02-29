@@ -1,3 +1,7 @@
+# 2.2.0
+
+handle identity and hashCode for Id class for easier comparison and work with Maps
+
 # 2.1.1
 
 allow dart 3 sdk, update github repo url
