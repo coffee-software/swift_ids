@@ -62,6 +62,20 @@ void main() {
         throwsA(TypeMatcher<PossibleTypoException>()));
   });
 
+  test('identity', () {
+    var a = new Id(5);
+    var b = new Id(5);
+    var c = new Id(6);
+    expect(a, equals(b));
+    expect(a, isNot(c));
+    Map<Id, int> map = {};
+    map[a] = 0;
+    expect(map[b], equals(0));
+    map[b] = 0;
+    map[c] = 0;
+    expect(map.length, equals(2));
+  });
+
   test('converter', () {
     var converter = new IdConverter(minLength: 9, zero: 0x1234512345);
     var expectedValues = {

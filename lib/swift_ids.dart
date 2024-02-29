@@ -165,4 +165,10 @@ class Id {
   String toString() {
     return _encode(value);
   }
+
+  @override
+  operator ==(o) => o is Id && o.value == value;
+
+  @override
+  int get hashCode => value.hashCode;
 }
