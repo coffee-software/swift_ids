@@ -124,6 +124,12 @@ class Id {
         mangler = decoded & 0x7;
         offset += 5;
       }
+      if (offset > 53) {
+        //this is a safe offset to avoid overflowing 2^53 JS int size.
+        //https://api.dart.dev/dart-core/int-class.html
+        throw Exception('invalid value');
+      }
+
       prevDecoded = _decodeMap[char]!;
     });
     return value ^ zero;

@@ -17,7 +17,7 @@ void main() {
             equals(i));
       }
       //large numbers
-      for (int i = 123456789012345678; i < 123456789012345778; i++) {
+      for (int i = 4503599627370456; i < 4503599627370496; i++) {
         expect(
             new Id.fromString(new Id(i, minLength: minLength).toString(),
                     minLength: minLength)
